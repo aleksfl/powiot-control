@@ -36,8 +36,7 @@ def main_control_loop():
                 match type:                    
                     case DeviceType.SENSIBO:
                         for r in sensibo.SensiboController.get_available_locations():
-                            states.append(temperature.get_current_temperature(device, datapoint_source, room=r, api_key=api_keys[DeviceType.SENSIBO]))   
-                        states.append(temperature.get_outside_temperature(device, datapoint_source, room=r, api_key=api_keys[DeviceType.SENSIBO]))
+                            states.append(temperature.get_current_temperature(device, datapoint_source, room=r, api_key=api_keys[DeviceType.SENSIBO]))                           
                     case _:
                         raise ValueError(f"Unsupported DeviceType: {type}")
                     

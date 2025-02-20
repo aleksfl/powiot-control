@@ -26,7 +26,7 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
 
     logging.info("Starting data import...")
-    #print(di.get_data_from_file(di.file_path, "heatPumpController", "fanLevel", 1, datetime.datetime.fromisoformat("2024-11-13T11:10:00Z"), datetime.datetime.fromisoformat("2024-11-13T11:20:00Z")))
+    print(di.get_data_from_file(di.file_path, "heatPumpController", "fanLevel", 1, datetime.datetime.fromisoformat("2024-11-13T11:10:00Z"), datetime.datetime.fromisoformat("2024-11-13T11:20:00Z")))
  
     
     logging.info("Finishing data import")

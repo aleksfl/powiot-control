@@ -1,0 +1,7 @@
+
+whitenoise
+uritemplate
+pyparsing 
+pydot 
+pandas
+influxdb-client

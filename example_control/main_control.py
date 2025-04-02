@@ -2,11 +2,11 @@
 #  various control algorithms with inputs and actuation ability connected to external smart home devices.
 # ###
 import time
-from state_actuation import rooms, power, temperature
-from state_actuation.state_actuation import Source
-from state_actuation.device.device_type import DeviceType
-from state_actuation.device import sensibo
-from simulation import simulation
+from example_control import rooms, power, temperature
+from example_control.state_actuation import Source
+from example_control.device.device_type import DeviceType
+from example_control.device import sensibo
+from custom_simulation import simulation
 import os
 
 system_type = os.getenv("SYSTEM_TYPE")

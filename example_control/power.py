@@ -1,7 +1,7 @@
 ### Involves getting power datapoints (consumption and cost) from supported devices ###
 
-from simulation.simulation import get_power
-from state_actuation.state_actuation import Source
+from custom_simulation.simulation import get_power
+from example_control.state_actuation import Source
 from device.device_type import DeviceType
 
 def get_current_power_consumption(type: DeviceType, source: Source, house_id , api_key = None):    

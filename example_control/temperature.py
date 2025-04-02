@@ -1,7 +1,7 @@
 ### Involves getting and setting temperature values for supported devices ###
 
-import simulation.simulation
-from state_actuation.state_actuation import Source
+import custom_simulation.simulation
+from example_control.state_actuation import Source
 from device.sensibo import SensiboController
 from device.device_type import DeviceType
 from datetime import datetime
@@ -15,7 +15,7 @@ def get_current_temperature(type: DeviceType, source: Source, house_id=None, roo
 
     match type:
         case DeviceType.SIMULATION:
-            return simulation.simulation.get_current_temperature()
+            return custom_simulation.simulation.get_current_temperature()
         case DeviceType.SENSIBO:
             return SensiboController.get_instance(api_key).get_latest_measurement(room)   
         case _:
@@ -30,7 +30,7 @@ def get_historical_temperatures(type: DeviceType, source: Source, from_time: dat
 
     match type:
         case DeviceType.SIMULATION:
-            return simulation.simulation.get_historical_temperatures(from_time)
+            return custom_simulation.simulation.get_historical_temperatures(from_time)
         case DeviceType.SENSIBO:
             pass        
         case _:
@@ -45,7 +45,7 @@ def set_temperature(type: DeviceType, source: Source, temperature: float, house_
 
     match type:
         case DeviceType.SIMULATION:
-            return simulation.simulation.set_temperature(temperature)
+            return custom_simulation.simulation.set_temperature(temperature)
         case DeviceType.SENSIBO:
             return SensiboController.get_instance(api_key).set_temperature(room, temperature)
         case _:
@@ -60,7 +60,7 @@ def get_outside_temperature(type: DeviceType, source: Source, house_id=None, roo
 
     match type:
         case DeviceType.SIMULATION:
-            return simulation.simulation.get_outside_temperature()
+            return custom_simulation.simulation.get_outside_temperature()
         case DeviceType.MET:
             pass
         case DeviceType.SOLCAST:
@@ -77,7 +77,7 @@ def get_historic_outside_temperatures(type: DeviceType, source: Source, from_tim
 
     match type:
         case DeviceType.SIMULATION:
-            return simulation.simulation.get_historical_outside_temperatures()
+            return custom_simulation.simulation.get_historical_outside_temperatures()
         case DeviceType.MET:
             pass
         case DeviceType.SOLCAST:

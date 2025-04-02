@@ -1,2 +1,3 @@
-simulation/data/house_data.csv
+custom_simulation/data/house_data.csv
 **/*Zone.Identifier
+venv/

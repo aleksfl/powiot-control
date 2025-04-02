@@ -1,6 +1,6 @@
 from device.sensibo import SensiboController
 from device.device_type import DeviceType
-import simulation.simulation
+import custom_simulation.simulation
 
 def get_rooms(type: DeviceType, api_key=None):
     if not isinstance(type, DeviceType):
@@ -8,7 +8,7 @@ def get_rooms(type: DeviceType, api_key=None):
 
     match type:
         case DeviceType.SIMULATION:
-            return simulation.simulation.rooms
+            return custom_simulation.simulation.rooms
         case DeviceType.SENSIBO:
             return SensiboController.get_instance(api_key).get_available_locations()   
         case _:

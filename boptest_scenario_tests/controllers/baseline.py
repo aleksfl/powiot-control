@@ -8,9 +8,9 @@ class BaselineController:
     def __init__(self):
         pass  # No specific initialization required
 
-    def compute_control(self, y):        
+    def compute_control(self, y, time, forecasts=None):        
         u = {}  # No control actions in baseline
-        return u, 0  # Also returning 0 as error (since it’s a baseline)
+        return u
 
     def initialize(self):        
         u = {}

@@ -53,33 +53,36 @@ def run(plot=True, length=3600, step=300, start_time=0, warmup_period=0):
     # RUN THE CONTROL TEST
     # --------------------
     control_module = 'controllers.mpc'
-    scenario = {'time_period': 'typical_heat_day', 'electricity_price': 'highly_dynamic'}
+    #scenario = {'time_period': 'typical_heat_day', 'electricity_price': 'highly_dynamic'}
+    scenario = None
     start_time = 0
     warmup_period = 0
-    length = length
+    length = 3600 * 24
     step = step
     # ---------------------------------------
 
     # RUN THE CONTROL TEST
     # --------------------
-    kpi, df_res, custom_kpi_result, forecasts = control_test('bestest_hydronic_heat_pump',
+    kpi, df_res, custom_kpi_result, forecasts = control_test('bestest_hydronic',
                                                             control_module,
                                                              scenario=scenario,
                                                            start_time=start_time,
                                                              warmup_period=warmup_period,
                                                              length=length,
-                                                             step=step)
+                                                             step=step,
+                                                             use_forecast=True
+                                                             )
 
     # POST-PROCESS RESULTS
     # --------------------
     time = df_res.index.values / 3600  # convert s --> hr
-    zone_temperature = df_res['reaTZon_y'].values - 273.15  # convert K --> C    
+    zone_temperature = df_res['reaTRoo_y'].values - 273.15  # convert K --> C    
 
     if plot:                
         plt.figure(1)
         plt.title('Zone Temperature')
         plt.plot(time, zone_temperature, label="Zone Temperature")
-        plt.plot(time, 20 * np.ones(len(time)), '--', label="Lower Comfort Limit (20°C)")
+        plt.plot(time, 17 * np.ones(len(time)), '--', label="Lower Comfort Limit (17°C)")
         plt.plot(time, 25 * np.ones(len(time)), '--', label="Upper Comfort Limit (25°C)")
         plt.ylabel('Temperature [C]')
         plt.xlabel('Time [hr]')

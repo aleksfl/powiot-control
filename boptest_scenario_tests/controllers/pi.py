@@ -10,8 +10,8 @@ class PIController:
         self.dt = dt
         self.integral = 0  # Integral term for the controller
 
-    def compute_control(self, y, forecasts=None):        
-        error = self.setpoint - y['reaTZon_y']
+    def compute_control(self, y, time, forecasts=None):        
+        error = self.setpoint - y['reaTRoo_y']
         self.integral += error * self.dt
 
         u_value = self.k_p * error + self.k_i * self.integral
@@ -19,9 +19,9 @@ class PIController:
         if u_value <= 0 or u_value >= 1:
             self.integral -= error * self.dt
         u = {
-            'oveHeaPumY_u': max(0, min(1, u_value)),        
+            'oveTSetSup_u': max(293.15, min(353.15, u_value)),        
         }
-        return u, error
+        return u
 
     def initialize(self):        
         print("Initializing PI controller:")
@@ -29,7 +29,7 @@ class PIController:
         print("K_i:", self.k_i)
         print("Temperature setpoint (*C):", self.setpoint-273.15)
         u = {        
-            'oveHeaPumY_activate': 1,        
-            'oveTSet_u': self.setpoint,     
+            'oveTSetSup_activate': 1,        
+            #'oveTSet_u': self.setpoint,     
         }
         return u

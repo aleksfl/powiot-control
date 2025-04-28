@@ -57,13 +57,13 @@ def run(plot=True, length=3600, step=300, start_time=0, warmup_period=0):
     scenario = {'time_period': 'typical_heat_day', 'electricity_price': 'highly_dynamic'}
     start_time = 0
     warmup_period = 0
-    length = length
+    length = length * 24 * 14
     step = step
     # ---------------------------------------
 
     # RUN THE CONTROL TEST
     # --------------------
-    kpi, df_res, custom_kpi_result, forecasts = control_test('bestest_hydronic_heat_pump',
+    kpi, df_res, custom_kpi_result, forecasts = control_test('bestest_hydronic',
                                                             control_module,
                                                              scenario=scenario,
                                                            start_time=start_time,
@@ -74,7 +74,7 @@ def run(plot=True, length=3600, step=300, start_time=0, warmup_period=0):
     # POST-PROCESS RESULTS
     # --------------------
     time = df_res.index.values / 3600  # convert s --> hr
-    zone_temperature = df_res['reaTZon_y'].values - 273.15  # convert K --> C    
+    zone_temperature = df_res['reaTRoo_y'].values - 273.15  # convert K --> C    
 
     if plot:                
         plt.figure(1)
